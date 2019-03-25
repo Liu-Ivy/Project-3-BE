@@ -4,75 +4,53 @@ const bcrypt = require('bcrypt');
 
 const User = require('../models/user');
 
-const { isLoggedIn } = require('../helpers/middlewares');
+const { isLoggedIn, isNotLoggedIn, validationLoggin } = require('../helpers/middlewares');
 
-router.get('/me', (req, res, next) => {
-  if (req.session.currentUser) {
-    res.json(req.session.currentUser);
-  } else {
-    res.status(404).json({
-      error: 'not-found'
-    });
-  }
+router.get('/me', isLoggedIn(), (req, res, next) => {
+  res.json(req.session.currentUser);
 });
 
-router.post('/login', (req, res, next) => {
-  if (req.session.currentUser) {
-    return res.status(401).json({
-      error: 'unauthorized'
-    });
-  }
-
+router.post('/login', isNotLoggedIn(), validationLoggin(), (req, res, next) => {
   const { username, password } = req.body;
-
-  if (!username || !password) {
-    return res.status(422).json({
-      error: 'validation'
-    });
-  }
 
   User.findOne({
       username
     })
     .then((user) => {
       if (!user) {
-        return res.status(404).json({
-          error: 'not-found'
-        });
+        const err = new Error('Not Found');
+        err.status = 404;
+        err.statusMessage = 'Not Found';
+        next(err)
       }
-      // TODO async bcrypt
       if (bcrypt.compareSync(password, user.password)) {
+        delete user.password;
+        console.log(user);
         req.session.currentUser = user;
         return res.status(200).json(user);
+      } else {
+        const err = new Error('Unauthorized');
+        err.status = 401;
+        err.statusMessage = 'Unauthorized';
+        next(err);
       }
-      return res.status(404).json({
-        error: 'not-found'
-      });
     })
     .catch(next);
 });
 
 
-router.post('/signup', (req, res, next) => {
-  const {
-    username,
-    password
-  } = req.body;
-
-  if (!username || !password) {
-    return res.status(422).json({
-      error: 'empty'
-    });
-  }
+router.post('/signup', isNotLoggedIn(), validationLoggin(), (req, res, next) => {
+  const { username, password } = req.body;
 
   User.findOne({
       username
     }, 'username')
     .then((userExists) => {
       if (userExists) {
-        return res.status(422).json({
-          error: 'username-not-unique'
-        });
+        const err = new Error('Unprocessable Entity');
+        err.status = 422;
+        err.statusMessage = 'username-not-unique';
+        next(err);
       }
 
       const salt = bcrypt.genSaltSync(10);
@@ -91,8 +69,8 @@ router.post('/signup', (req, res, next) => {
     .catch(next);
 });
 
-router.post('/logout', (req, res) => {
-  req.session.currentUser = null;
+router.post('/logout', isLoggedIn(), (req, res, next) => {
+  req.session.destroy();
   return res.status(204).send();
 });
 

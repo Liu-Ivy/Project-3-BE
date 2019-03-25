@@ -42,7 +42,7 @@ app.use(session({
     mongooseConnection: mongoose.connection,
     ttl: 24 * 60 * 60 // 1 day
   }),
-  secret: 'some-string',
+  secret: process.env.SECRET_SESSION,
   resave: true,
   saveUninitialized: true,
   cookie: {
@@ -69,7 +69,8 @@ app.use((err, req, res, next) => {
 
   // only render if the error ocurred before sending the response
   if (!res.headersSent) {
-    res.status(500).json({ code: 'unexpected' });
+    const statusError = err.status || '500' 
+    res.status(statusError).json(err);
   }
 });
 
