@@ -24,8 +24,6 @@ router.post('/login', isNotLoggedIn(), validationLoggin(), (req, res, next) => {
         next(err)
       }
       if (bcrypt.compareSync(password, user.password)) {
-        delete user.password;
-        console.log(user);
         req.session.currentUser = user;
         return res.status(200).json(user);
       } else {
@@ -37,7 +35,6 @@ router.post('/login', isNotLoggedIn(), validationLoggin(), (req, res, next) => {
     })
     .catch(next);
 });
-
 
 router.post('/signup', isNotLoggedIn(), validationLoggin(), (req, res, next) => {
   const { username, password } = req.body;
@@ -56,14 +53,15 @@ router.post('/signup', isNotLoggedIn(), validationLoggin(), (req, res, next) => 
       const salt = bcrypt.genSaltSync(10);
       const hashPass = bcrypt.hashSync(password, salt);
 
-      const newUser = User({
+      const newUser = new User({
         username,
         password: hashPass,
       });
 
       return newUser.save().then(() => {
+        // TODO delete password 
         req.session.currentUser = newUser;
-        res.json(newUser);
+        res.status(200).json(newUser);
       });
     })
     .catch(next);
