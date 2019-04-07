@@ -1,4 +1,6 @@
 const express = require('express');
+const createError = require('http-errors');
+
 const router = express.Router();
 const bcrypt = require('bcrypt');
 
@@ -23,18 +25,12 @@ router.post(
     try {
       const user = await User.findOne({ username });
       if (!user) {
-        const err = new Error('Not Found');
-        err.status = 404;
-        err.statusMessage = 'Not Found';
-        next(err);
+        next(createError(404));
       } else if (bcrypt.compareSync(password, user.password)) {
         req.session.currentUser = user;
         return res.status(200).json(user);
       } else {
-        const err = new Error('Unauthorized');
-        err.status = 401;
-        err.statusMessage = 'Unauthorized';
-        next(err);
+        next(createError(401));
       }
     } catch (error) {
       next(error);
@@ -52,10 +48,7 @@ router.post(
     try {
       const user = await User.findOne({ username }, 'username');
       if (user) {
-        const err = new Error('Unprocessable Entity');
-        err.status = 422;
-        err.statusMessage = 'username-not-unique';
-        return next(err);
+        return next(createError(422));
       } else {
         const salt = bcrypt.genSaltSync(10);
         const hashPass = bcrypt.hashSync(password, salt);
