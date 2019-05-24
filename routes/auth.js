@@ -5,6 +5,7 @@ const router = express.Router();
 const bcrypt = require('bcrypt');
 
 const User = require('../models/user');
+const Plan = require('../models/plan');
 
 const {
   isLoggedIn,
@@ -16,18 +17,17 @@ router.get('/me', isLoggedIn(), (req, res, next) => {
   res.json(req.session.currentUser);
 });
 
-router.post(
-  '/login',
-  isNotLoggedIn(),
-  validationLoggin(),
+router.post('/login', isNotLoggedIn(), validationLoggin(),
   async (req, res, next) => {
     const { username, password } = req.body;
+    // console.log('nnn',req.body)
     try {
       const user = await User.findOne({ username });
       if (!user) {
         next(createError(404));
       } else if (bcrypt.compareSync(password, user.password)) {
         req.session.currentUser = user;
+        // console.log('user', req.session.currentUser)
         return res.status(200).json(user);
       } else {
         next(createError(401));
@@ -38,10 +38,7 @@ router.post(
   },
 );
 
-router.post(
-  '/signup',
-  isNotLoggedIn(),
-  validationLoggin(),
+router.post('/signup', isNotLoggedIn(), validationLoggin(),
   async (req, res, next) => {
     const { username, password } = req.body;
 
