@@ -5,23 +5,23 @@ const dbName = 'allTopic';
 mongoose.connect(`mongodb://localhost/${dbName}`);
 
 const topics = [
-  { topic: 'Reading',
-    image: 'reading.jpg' 
+  { title: 'Reading',
+    image: '../images/reading.jpg' 
   },
-  { topic: 'Writing',
-    image: 'writing.jpg'
+  { title: 'Writing',
+    image: '../images/writing.jpg'
   },
-  { topic: 'Festival',
-    image: 'Festival.jpg'
+  { title: 'Festival',
+    image: '../images/Festival.jpg'
   },
-  { topic: 'Warm up activities',
-    image: 'warmup.jpg'
+  { title: 'Warm up activities',
+    image: '../images/warmup.jpg'
   },
-  { topic: 'HSK',
-    image: 'HSK.jpg'
+  { title: 'HSK',
+    image: '../images/HSK.jpg'
   },
-  { topic: 'Tool Books',
-    image: 'tool books.jpg'
+  { title: 'Tool Books',
+    image: '../images/tool books.jpg'
   },
 ]
 

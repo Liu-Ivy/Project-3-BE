@@ -3,8 +3,8 @@ const Schema = mongoose.Schema;
 
 
 const topicSchema = new Schema({
-  topic: String,
-  img: String
+  title: String,
+  image: String
 });
 
 const Topic = mongoose.model("Topic", topicSchema);
