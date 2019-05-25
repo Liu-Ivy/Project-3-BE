@@ -24,10 +24,9 @@ router.get('/', (req, res, next) => {
     .catch(err => {res.json(err);})
 });
 
-
-// // GET '/topics:topic'		
-// router.get('/subjects/:topic', (req, res) => {
-//   const { topic } = req.params;
+// // GET '/topic'		
+// router.get('/topic', (req, res) => {
+//   const { topic, image } = req.params;
 
 //   Topic.findById( topic )
 //     .then( (foundProject) => {
@@ -38,35 +37,18 @@ router.get('/', (req, res, next) => {
 //     })
 //   });
 
-// GET '/topics/:id'		
-router.get('/:id', (req, res) => {
-  console.log(req.params)
-  const { id } = req.params;
+// // Post'/topic'	
+// router.post('/topic',(req,res)=> {
+//   const {topic, image} = req.body;
 
-  Topic.findById( id ).populate('tasks')
-    .then( (foundTopic) => {
-      res.status(200).json(foundTopic);
-    })
-    .catch((err) => {
-      res.res.status(500).json(err);
-    })
-  });
-
-
-
-// PUT '/topics/:id'
-router.put('/:id', (req, res, next)=>{
-
-  console.log(req.params)
-
-  Topic.findByIdAndUpdate(req.params.id, req.body)
-    .then(() => {
-      res.json({ message: `Topic with ${req.params.id} is updated successfully.` });
-    })
-    .catch(err => {
-      res.json(err);
-    })
-})
+//   Topic.create({ topic, image })
+//     .then((response)=> {
+//       res.status(201).json(response);
+//     })
+//     .catch((err)=> {
+//       res.status(500).json(err)
+//     })
+// })
 
 
 

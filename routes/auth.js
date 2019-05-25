@@ -5,7 +5,7 @@ const router = express.Router();
 const bcrypt = require('bcrypt');
 
 const User = require('../models/user');
-const Plan = require('../models/plan');
+
 
 const {
   isLoggedIn,

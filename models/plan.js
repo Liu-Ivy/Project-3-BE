@@ -3,8 +3,9 @@ const Schema = mongoose.Schema;
 
 const planSchema = new Schema({
   topic: String,
+  title: String,
   Description: String,
-  Duration: String,
+  Duration: Number,
   image: String,
 });
 

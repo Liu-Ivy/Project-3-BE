@@ -1,27 +1,28 @@
 const mongoose = require('mongoose');
 const Topic = require('../models/topics');
+const Plan = require('../models/plan');
 
 const dbName = 'allTopic';
 mongoose.connect(`mongodb://localhost/${dbName}`);
 
 const topics = [
-  { title: 'Reading',
-    image: '../images/reading.jpg' 
+  { topic: 'Reading',
+    image: 'reading.jpg' 
   },
-  { title: 'Writing',
-    image: '../images/writing.jpg'
+  { topic: 'Writing',
+    image: 'writing.jpg'
   },
-  { title: 'Festival',
-    image: '../images/Festival.jpg'
+  { topic: 'Festival',
+    image: 'Festival.jpg'
   },
-  { title: 'Warm up activities',
-    image: '../images/warmup.jpg'
+  { topic: 'Warm up activities',
+    image: 'warmup.jpg'
   },
-  { title: 'HSK',
-    image: '../images/HSK.jpg'
+  { topic: 'HSK',
+    image: 'HSK.jpg'
   },
-  { title: 'Tool Books',
-    image: '../images/tool books.jpg'
+  { topic: 'Tool Books',
+    image: 'tool-books.jpg'
   },
 ]
 
@@ -30,3 +31,4 @@ Topic.create(topics, (err) => {
   console.log(`Created ${topics.length} topics`)
   mongoose.connection.close();
 });
+

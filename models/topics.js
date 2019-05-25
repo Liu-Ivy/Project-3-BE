@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 
 const topicSchema = new Schema({
-  title: String,
+  topic: String,
   image: String
 });
 
