@@ -7,81 +7,83 @@ mongoose.connect(`mongodb://localhost/${dbName}`);
 const plans = [
   { topic: 'Reading',
     title: 'title',
-    Description: '這本書，是本非常可愛的書。適合於學生們共讀。網上找到了電子版，給老師們參考。',
-    // ${http://videbouteilleprimaryschool.weebly.com/…/tikki_tikki_…},
-    Duration: 5,
-    image: 'story-book.jpg' 
+    description: '這本書，是本非常可愛的書。適合於學生們共讀。網上找到了電子版，給老師們參考。http://videbouteilleprimaryschool.weebly.com/…/tikki_tikki_…',
+    duration: 5,
+    image: 'https://images.unsplash.com/photo-1534620783980-fa96320b0ce6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80' 
   },
   { topic: 'Reading',
     title: 'title',
-    Description: '這本書，是本非常可愛的書。適合於學生們共讀。網上找到了電子版，給老師們參考。',
-    Duration: 5,
-    image: 'story-book.jpg' ,
+    description: '這本書，是本非常可愛的書。適合於學生們共讀。網上找到了電子版，給老師們參考。',
+    duration: 5,
+    image: 'https://images.unsplash.com/photo-1534620783980-fa96320b0ce6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80' 
   },
   { topic: 'Writing',
     title: 'title',
-    Description: '五歲以下的孩子還沒有寫字的能力，所以可以使用棉花棒和字卡,加深對數字的印象。',
-    Duration:  5,
-    image: 'writing.jpg',
+    description: '五歲以下的孩子還沒有寫字的能力，所以可以使用棉花棒和字卡,加深對數字的印象。',
+    duration:  5,
+    image: 'https://images.unsplash.com/photo-1534620783980-fa96320b0ce6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80' 
   },
   { topic: 'Writing',
     title: 'title',
-    Description: '五歲以下的孩子還沒有寫字的能力，所以可以使用棉花棒和字卡,加深對數字的印象。',
-    Duration:  5,
-    image: 'writing.jpg',
+    description: '五歲以下的孩子還沒有寫字的能力，所以可以使用棉花棒和字卡,加深對數字的印象。',
+    duration:  5,
+    image: 'https://images.unsplash.com/photo-1534620783980-fa96320b0ce6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80' 
   },
   { topic: 'Festival',
     title: 'title',
-    Description: '這本書，是本非常可愛的書。適合於學生們共讀。網上找到了電子版，給老師們參考。',
-    Duration: 5,
-    image: 'Festival.jpg',
+    description: '這本書，是本非常可愛的書。適合於學生們共讀。網上找到了電子版，給老師們參考。',
+    duration: 5,
+    image: 'https://images.unsplash.com/photo-1534620783980-fa96320b0ce6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80' 
   },
   { topic: 'Festival',
     title: 'title',
-    Description: '這本書，是本非常可愛的書。適合於學生們共讀。網上找到了電子版，給老師們參考。',
-    Duration: 5,
-    image: 'Festival.jpg',
+    description: '這本書，是本非常可愛的書。適合於學生們共讀。網上找到了電子版，給老師們參考。',
+    duration: 5,
+    image: 'https://images.unsplash.com/photo-1534620783980-fa96320b0ce6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80' 
   },
   { topic: 'Warm up activities',
     title: 'title',
-    Description: '這本書，是本非常可愛的書。適合於學生們共讀。網上找到了電子版，給老師們參考。',
-    Duration: 5,
-    image: 'warmup.jpg',
+    description: '這本書，是本非常可愛的書。適合於學生們共讀。網上找到了電子版，給老師們參考。',
+    duration: 5,
+    image: 'https://images.unsplash.com/photo-1534620783980-fa96320b0ce6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80' 
   },
   { topic: 'Warm up activities',
     title: 'title',
-    Description: '這本書，是本非常可愛的書。適合於學生們共讀。網上找到了電子版，給老師們參考。',
-    Duration: 5,
-    image: 'warmup.jpg',
+    description: '這本書，是本非常可愛的書。適合於學生們共讀。網上找到了電子版，給老師們參考。',
+    duration: 5,
+    image: 'https://images.unsplash.com/photo-1534620783980-fa96320b0ce6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80' 
   },
   { topic: 'HSK',
     title: 'title',
-    Description: '這本書，是本非常可愛的書。適合於學生們共讀。網上找到了電子版，給老師們參考。',
-    Duration: 5,
-    image: 'HSK.jpg',
+    description: '這本書，是本非常可愛的書。適合於學生們共讀。網上找到了電子版，給老師們參考。',
+    duration: 5,
+    image: 'https://images.unsplash.com/photo-1534620783980-fa96320b0ce6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80' 
   },
   { topic: 'HSK',
     title: 'title',
-    Description: '這本書，是本非常可愛的書。適合於學生們共讀。網上找到了電子版，給老師們參考。',
-    Duration: 5,
-    image: 'HSK.jpg',
+    description: '這本書，是本非常可愛的書。適合於學生們共讀。網上找到了電子版，給老師們參考。',
+    duration: 5,
+    image: 'https://images.unsplash.com/photo-1534620783980-fa96320b0ce6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80' 
   },
   { topic: 'Tool Books',
     title: 'title',
-    Description: '這本書，是本非常可愛的書。適合於學生們共讀。網上找到了電子版，給老師們參考。',
-    Duration: 5,
-    image: 'tool-books.jpg',
+    description: '這本書，是本非常可愛的書。適合於學生們共讀。網上找到了電子版，給老師們參考。',
+    duration: 5,
+    image: 'https://images.unsplash.com/photo-1534620783980-fa96320b0ce6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80' 
   },
   { topic: 'Tool Books',
     title: 'title',
-    Description: '這本書，是本非常可愛的書。適合於學生們共讀。網上找到了電子版，給老師們參考。',
-    Duration: 5,
-    image: 'tool-books.jpg',
+    description: '這本書，是本非常可愛的書。適合於學生們共讀。網上找到了電子版，給老師們參考。',
+    duration: 5,
+    image: 'https://images.unsplash.com/photo-1534620783980-fa96320b0ce6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80' 
 },
 ]
 
-Plan.create(plans, (err) => {
-  if (err) { throw(err) }
-  console.log(`Created ${plans.length} plans`)
-  mongoose.connection.close();
-});
+Plan.deleteMany()
+.then(() => {
+  Plan.create(plans, (err) => {
+    if (err) { throw(err) }
+    console.log(`Created ${plans.length} plans`)
+    mongoose.connection.close();
+  });
+})

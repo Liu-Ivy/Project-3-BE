@@ -4,6 +4,7 @@ const createError = require('http-errors');
 const router = express.Router();
 const bcrypt = require('bcrypt');
 const Plan = require('../models/plan');
+const parser = require('../config/cloudinary');
 
 // GET '/plan'		
 router.get('/', (req, res) => {
@@ -18,18 +19,18 @@ router.get('/', (req, res) => {
     })
   });
 
-// // Post'/plan'	
-// router.post('/',(req,res)=> {
-//   const {topic, image} = req.body;
-
-//   Topic.create({ topic, image })
-//     .then((response)=> {
-//       res.status(201).json(response);
-//     })
-//     .catch((err)=> {
-//       res.status(500).json(err)
-//     })
-// })
+// Post'/plan'	
+router.post('/',(req,res)=> {
+  const {title, topic, description, imageUrl, duration, location} = req.body;
+  console.log('title', title)
+  Plan.create({ title, topic, description, duration })
+    .then((response)=> {
+      res.status(201).json(response);
+    })
+    .catch((err)=> {
+      res.status(500).json(err)
+    })
+})
 
 // GET '/topic/:id'		
 router.get('/:id', (req, res) => {
@@ -58,7 +59,14 @@ router.get('/:id', (req, res) => {
 //       res.json(err);
 //     })
 // })
-
+router.post('/image', parser.single('photo'), (req, res, next) => {
+  console.log('file upload');
+  if (!req.file) {
+    next(new Error('No file uploaded!'));
+  };
+  const imageUrl = req.file.secure_url;
+  res.json(imageUrl).status(200);
+});
 
 
 

@@ -4,8 +4,8 @@ const Schema = mongoose.Schema;
 const planSchema = new Schema({
   topic: String,
   title: String,
-  Description: String,
-  Duration: Number,
+  description: String,
+  duration: Number,
   image: String,
 });
 
