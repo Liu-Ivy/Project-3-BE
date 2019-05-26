@@ -7,6 +7,7 @@ const planSchema = new Schema({
   description: String,
   duration: Number,
   image: String,
+  location: String,
 });
 
 const Plan = mongoose.model('Plan', planSchema);

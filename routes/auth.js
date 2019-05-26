@@ -58,6 +58,19 @@ router.post('/signup', isNotLoggedIn(), validationLoggin(),
     }
   },
 );
+router.put('/update', (req, res, next) => {
+  const { user } = req.body;
+  User.findByIdAndUpdate(user._id, user)
+    .then((user)=>{
+      req.session.currentUser = user;
+      res.status(200);
+      res.json({
+        message: 'updated',
+        user: user
+      });
+    })
+    .catch(next)
+})
 
 router.post('/logout', isLoggedIn(), (req, res, next) => {
   req.session.destroy();
