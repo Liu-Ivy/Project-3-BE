@@ -6,7 +6,7 @@ const planSchema = new Schema({
   title: String,
   description: String,
   duration: Number,
-  image: String,
+  imageUrl: String,
   location: String,
 });
 

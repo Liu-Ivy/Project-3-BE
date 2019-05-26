@@ -23,7 +23,7 @@ router.get('/', (req, res) => {
 router.post('/',(req,res)=> {
   const {title, topic, description, imageUrl, duration, location} = req.body;
   console.log('title', title)
-  Plan.create({ title, topic, description, duration })
+  Plan.create({ title, topic, description, duration ,imageUrl})
     .then((response)=> {
       res.status(201).json(response);
     })
