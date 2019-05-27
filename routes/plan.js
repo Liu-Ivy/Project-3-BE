@@ -60,7 +60,7 @@ router.get('/:id', (req, res) => {
   const {title, topic, description, imageUrl, duration, location} = req.body;
   const plan = {title, topic, description, imageUrl, duration, location}
  
-   Plan.findByIdAndUpdate(_id, plan)//
+   Plan.findByIdAndUpdate(_id, plan)
      .then(() => {
        res.json({ message: `Topic with ${req.params.id} is updated successfully.` });
      })
@@ -68,6 +68,26 @@ router.get('/:id', (req, res) => {
        res.json(err);
      })
  })
+
+ router.delete('/', (req, res)=>{
+  const { _id } = req.body;
+  const {title, topic, description, imageUrl, duration, location} = req.body;
+  const plan = {title, topic, description, imageUrl, duration, location}
+
+  if ( !mongoose.Types.ObjectId.isValid(id)) {
+    res.status(400).json({ message: 'Specified id is not valid' });
+    return;
+  }
+  Plan.findByIdAndRemove(_id, plan)
+    .then(() => {
+      res
+        .status(202)  //  Accepted
+        .json({ message: `Project with ${id} was removed successfully.` });
+    })
+    .catch( err => {
+      res.status(500).json(err);
+    })
+  })
 
 router.post('/image', parser.single('photo'), (req, res, next) => {
   console.log('file upload');
