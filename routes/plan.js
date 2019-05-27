@@ -4,6 +4,7 @@ const createError = require('http-errors');
 const router = express.Router();
 const bcrypt = require('bcrypt');
 const Plan = require('../models/plan');
+const User = require('../models/user');
 const parser = require('../config/cloudinary');
 
 // GET '/plan'		
@@ -22,8 +23,14 @@ router.get('/', (req, res) => {
 // Post'/plan'	
 router.post('/',(req,res)=> {
   const {title, topic, description, imageUrl, duration, location} = req.body;
-  console.log('title', title)
-  Plan.create({ title, topic, description, duration ,imageUrl})
+  const newPlan = new Plan({title, topic, description, imageUrl, duration, location})
+  
+
+  const id = req.session.currentUser._id
+  const updateUser = User.findByIdAndUpdate(id, {$push: {plans: newPlan._id}})
+  const savePlan = newPlan.save();
+
+  Promise.all([updateUser, savePlan])
     .then((response)=> {
       res.status(201).json(response);
     })
