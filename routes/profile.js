@@ -7,49 +7,21 @@ const User = require('../models/user');
 const Plan = require('../models/plan');
 
 
-// // Post'/profile'	
-// router.post('/profile',(req,res)=> {
-//   const { username, password, location, plans } = req.body;
-
-//   User.create({ username, password, location, plans })
-//     .then((response)=> {
-//       res.status(201).json(response);
-//     })
-//     .catch((err)=> {
-//       res.status(500).json(err)
-//     })
-// })
 // get plan from User
-
-const plans = []
 router.get('/',(req,res)=> {
+  
   const { _id } = req.session.currentUser
-  console.log('id', _id)
-  User.findById(_id)
-     .then((user)=>{
-       user.plans.forEach((plan) => {
-          Plan.findById(plan)
-          .then((plan) => {
-            plans.push(plan)
-          })
-          .catch((reason) =>{
-            console.log(reason);
-          });
-        })
+  
+  User.findById(_id).populate('plans')
+     .then((data)=>{
+      res.status(200)
+       res.json(data)
+     })
         .catch((reason) =>{
           console.log(reason);
         });
       })
-      .then(() => {
-        console.log('plans', plans)
-      res.status(200);
-      res.json({
-        plans: plans
-      })
-      .catch((reason) =>{
-        console.log(reason);
-      });
-    })
+      
 
     // User.findOneById().populate('Plan')
     //   .then((user) =>{
@@ -58,6 +30,6 @@ router.get('/',(req,res)=> {
     //   .catch((reason) =>{
     //       console.log(reason);
     //       });
-    })
+    
 
 module.exports = router;

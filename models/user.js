@@ -5,7 +5,7 @@ const userSchema = new Schema({
   username: String,
   password: String,
   imageUrl: String,
-  plans: [{type: Schema.Types.ObjectId, ref: 'Plans' }],
+  plans: [{type: Schema.Types.ObjectId, ref: 'Plan' }],
 });
 
 const User = mongoose.model('User', userSchema);

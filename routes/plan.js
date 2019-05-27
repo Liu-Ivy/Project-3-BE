@@ -22,6 +22,7 @@ router.get('/', (req, res) => {
 
 // Post'/plan'	
 router.post('/',(req,res)=> {
+ 
   const {title, topic, description, imageUrl, duration, location} = req.body;
   const newPlan = new Plan({title, topic, description, imageUrl, duration, location})
   
