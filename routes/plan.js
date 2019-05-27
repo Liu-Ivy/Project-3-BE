@@ -41,7 +41,6 @@ router.post('/',(req,res)=> {
 
 // GET '/topic/:id'		
 router.get('/:id', (req, res) => {
-  console.log('haha',req.params)
   const { id } = req.params;
 
   Plan.findById( id )
@@ -66,7 +65,7 @@ router.get('/:id', (req, res) => {
        res.json(err);
      })
  })
- 
+
 router.post('/image', parser.single('photo'), (req, res, next) => {
   console.log('file upload');
   if (!req.file) {

@@ -19,15 +19,45 @@ const Plan = require('../models/plan');
 //       res.status(500).json(err)
 //     })
 // })
-// Match the Plan into User
-router.get('/profile',(req,res)=> {
-    User.findOneById().populate('Plan')
-      .then((user) =>{
-          console.log(user);
-                      })
-      .catch((reason) =>{
-          console.log(reason);
+// get plan from User
+
+const plans = []
+router.get('/',(req,res)=> {
+  const { _id } = req.session.currentUser
+  console.log('id', _id)
+  User.findById(_id)
+     .then((user)=>{
+       user.plans.forEach((plan) => {
+          Plan.findById(plan)
+          .then((plan) => {
+            plans.push(plan)
+          })
+          .catch((reason) =>{
+            console.log(reason);
           });
+        })
+        .catch((reason) =>{
+          console.log(reason);
+        });
+      })
+      .then(() => {
+        console.log('plans', plans)
+      res.status(200);
+      res.json({
+        plans: plans
+      })
+      .catch((reason) =>{
+        console.log(reason);
+      });
+    })
+
+    // User.findOneById().populate('Plan')
+    //   .then((user) =>{
+    //       console.log(user);
+    //                   })
+    //   .catch((reason) =>{
+    //       console.log(reason);
+    //       });
     })
 
 module.exports = router;
