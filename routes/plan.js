@@ -53,19 +53,20 @@ router.get('/:id', (req, res) => {
     })
   });
 
-// // PUT '/topics/:id'
-// router.put('/:id', (req, res, next)=>{
+  //PUT '/topics/:id'
+ router.put('/:id', (req, res, next)=>{
 
-//   console.log(req.params)
+   console.log(req.params)
 
-//   Topic.findByIdAndUpdate(req.params.id, req.body)
-//     .then(() => {
-//       res.json({ message: `Topic with ${req.params.id} is updated successfully.` });
-//     })
-//     .catch(err => {
-//       res.json(err);
-//     })
-// })
+   Topic.findByIdAndUpdate(req.params.id, req.body)
+     .then(() => {
+       res.json({ message: `Topic with ${req.params.id} is updated successfully.` });
+     })
+     .catch(err => {
+       res.json(err);
+     })
+ })
+ 
 router.post('/image', parser.single('photo'), (req, res, next) => {
   console.log('file upload');
   if (!req.file) {
