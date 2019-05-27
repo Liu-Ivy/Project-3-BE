@@ -54,11 +54,13 @@ router.get('/:id', (req, res) => {
   });
 
   //PUT '/topics/:id'
- router.put('/:id', (req, res, next)=>{
-
-   console.log(req.params)
-
-   Topic.findByIdAndUpdate(req.params.id, req.body)
+ router.put('/', (req, res, next)=>{
+  const { _id } = req.body
+  
+  const {title, topic, description, imageUrl, duration, location} = req.body;
+  const plan = {title, topic, description, imageUrl, duration, location}
+ 
+   Plan.findByIdAndUpdate(_id, plan)//
      .then(() => {
        res.json({ message: `Topic with ${req.params.id} is updated successfully.` });
      })
