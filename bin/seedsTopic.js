@@ -2,8 +2,9 @@ const mongoose = require('mongoose');
 const Topic = require('../models/topics');
 const Plan = require('../models/plan');
 
-const dbName = 'allTopic';
-mongoose.connect(`mongodb://localhost/${dbName}`);
+require("dotenv").config()
+
+mongoose.connect(process.env.MONGODB_URI);
 
 const topics = [
   { topic: 'Reading',
