@@ -69,20 +69,20 @@ router.get('/:id', (req, res) => {
      })
  })
 
- router.delete('/', (req, res)=>{
-  const { _id } = req.body;
+ router.delete('/:id', (req, res)=>{
+  // const { _id } = req.body;
   const {title, topic, description, imageUrl, duration, location} = req.body;
   const plan = {title, topic, description, imageUrl, duration, location}
 
-  if ( !mongoose.Types.ObjectId.isValid(id)) {
-    res.status(400).json({ message: 'Specified id is not valid' });
-    return;
-  }
-  Plan.findByIdAndRemove(_id, plan)
+  // if ( !mongoose.Types.ObjectId.isValid(id)) {
+  //   res.status(400).json({ message: 'Specified id is not valid' });
+  //   return;
+  // }
+  Plan.findByIdAndRemove(req.params.id)
     .then(() => {
       res
         .status(202)  //  Accepted
-        .json({ message: `Project with ${id} was removed successfully.` });
+        .json({ message: `Project with ${plan} was removed successfully.` });
     })
     .catch( err => {
       res.status(500).json(err);
