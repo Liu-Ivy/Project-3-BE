@@ -21,7 +21,7 @@ self.__precacheManifest = [
   },
   {
     "revision": "3d0b294cc7adbf410bada86d425b3937",
-    "url": "/static/media/background3.3d0b294c.jpg"
+    "url": "/static/media/background.3d0b294c.jpg"
   },
   {
     "revision": "3d0b294cc7adbf410bada86d425b3937",
@@ -29,7 +29,7 @@ self.__precacheManifest = [
   },
   {
     "revision": "3d0b294cc7adbf410bada86d425b3937",
-    "url": "/static/media/background.3d0b294c.jpg"
+    "url": "/static/media/background3.3d0b294c.jpg"
   },
   {
     "revision": "fdb337e1ec6a5697bc1a2f1e4d4e8638",
