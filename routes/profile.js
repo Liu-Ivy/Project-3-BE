@@ -23,13 +23,5 @@ router.get('/',(req,res)=> {
       })
       
 
-    // User.findOneById().populate('Plan')
-    //   .then((user) =>{
-    //       console.log(user);
-    //                   })
-    //   .catch((reason) =>{
-    //       console.log(reason);
-    //       });
-    
 
 module.exports = router;
